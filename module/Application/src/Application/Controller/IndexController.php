@@ -1,21 +1,28 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class IndexController
+ * @package Application\Controller
+ */
 class IndexController extends AbstractActionController
 {
+    /**
+     * Home page
+     * @return ViewModel
+     */
     public function indexAction()
     {
-        return new ViewModel();
+        $view = new ViewModel();
+        $year = (int) $this->params()->fromRoute('year', date('Y') + 1);
+
+        $expenseDates = $this->FetchExpenseDates($year);
+
+        $view->setVariable('expenseDates', $expenseDates);
+        return $view;
     }
+
 }
