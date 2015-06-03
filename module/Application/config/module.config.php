@@ -57,6 +57,15 @@ return array(
     'console' => array(
         'router' => array(
             'routes' => array(
+                'generate' => array(
+                    'options' => array(
+                        'route'    => 'generate <filename> [<year>]',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Index',
+                            'action'     => 'generate'
+                        )
+                    )
+                )
             ),
         ),
     ),
